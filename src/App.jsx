@@ -1,23 +1,24 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import ConnectWallet from './components/ConnectWallet';
+import Header from './components/Header';
+
 import SearchBar from './components/SearchBar';
 import './App.css'
 
 function App() {
-  const [address, setAddress] = useState("");
+
 
   return (
-    <div className="bg-gray-300 h-svh w-dvw flex flex-col justify-center items-center">
-    <h1 className="text-4xl text-center font-thin font-mono">
-    Find your ERC Token balances here
+    <>
+    <Header />
+    <div className="bg-gray-300 pt-20 min-h-svh w-dvw flex flex-col  items-center">
+     
+    <h1 className="text-4xl mb-7 text-center font-thin font-mono">
+    Check ERC Token balances here
     </h1>
-    <ConnectWallet accountAddress={setAddress}/>
-    <h3 className="mb-5">Or type the address below</h3>
-    <SearchBar address={setAddress}/>
+
+    <SearchBar />
   </div>
-  
+  </>
   )
 }
 
