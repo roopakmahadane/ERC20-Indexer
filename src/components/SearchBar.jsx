@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { Alchemy, Network, Utils } from 'alchemy-sdk';
 import TokenCard from "./tokenCard";
+import Loader from "./Loader";
 
 export default function SearchBar(){
 
@@ -27,9 +28,7 @@ export default function SearchBar(){
             setCurrentpage(prev => Math.max(prev - 1, 1))
         }
         if(direction=="next"){
-            
-            setCurrentpage(prev => Math.min(prev + 1, totalPages))
-            
+            setCurrentpage(prev => Math.min(prev + 1, totalPages))  
         }
     }
 
@@ -62,9 +61,7 @@ export default function SearchBar(){
         setTokenDataObjects(await Promise.all(tokenDataPromises))
         setHasQueried(true);
         setLoading(false);
-        console.log("seacrg bar",tokenDataObjects);
         setDataOfPage(tokenDataObjects.slice(0, 10));
-        console.log("DATA PER PAGE",dataOfPage);
       }
 
        
@@ -83,7 +80,7 @@ export default function SearchBar(){
             <button type="submit" class="text-black absolute end-2.5 bottom-2.5 bg-gray-200 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 cursor-pointer font-medium rounded-lg text-sm px-4 py-2 border">Search</button>
         </div>
     </form>
-        {loading && !hasQueried && <h3>Loading!!</h3>}
+        {loading && !hasQueried && <Loader />}
          {!loading && hasQueried && 
          results.tokenBalances.slice(((currentPage*itemsPerPage))-itemsPerPage, currentPage*itemsPerPage).map((e,i) => {
             return (
